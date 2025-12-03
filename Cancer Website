@@ -1,0 +1,107 @@
+import React, { useState } from "react";
+<p className="font-semibold">Demo analysis (non-clinical)</p>
+<p>Benign score: <strong>{analysis.benign}%</strong></p>
+<p>Malignant score: <strong>{analysis.malignant}%</strong></p>
+<p className="mt-2 text-sm text-gray-600">{analysis.note}</p>
+</>
+)}
+</div>
+)}
+</div>
+</>
+)
+},
+{
+title: "Next Steps & Resources",
+body: (
+<>
+<p>If imaging or clinical concern exists, typical next steps include:</p>
+<ol className="list-decimal pl-5 space-y-1">
+<li>Referral to a neurologist or neurosurgeon.</li>
+<li>Further imaging and contrast-enhanced studies.</li>
+<li>Consideration of biopsy and pathology review.</li>
+</ol>
+<p className="mt-2 text-sm text-gray-600">Always rely on certified medical professionals for diagnosis and treatment planning.</p>
+</>
+)
+}
+];
+
+
+return (
+<div className="min-h-screen bg-gradient-to-b from-gray-100 to-white p-6">
+<div className="max-w-5xl mx-auto">
+<header className="flex items-center justify-between mb-6">
+<h1 className="text-2xl font-bold">Brain Tumor: Educational Presentation</h1>
+<div className="text-sm text-gray-600">Educational demo • Not a medical device</div>
+</header>
+
+
+<main className="grid md:grid-cols-3 gap-6">
+<section className="md:col-span-2 bg-white rounded-lg shadow p-6">
+<div className="flex items-center justify-between">
+<h2 className="text-xl font-semibold">{slides[slide].title}</h2>
+<div className="text-sm text-gray-500">Slide {slide + 1} / {slides.length}</div>
+</div>
+
+
+<div className="mt-4 text-gray-800">{slides[slide].body}</div>
+
+
+<div className="mt-6 flex gap-2">
+<button
+onClick={() => setSlide((s) => Math.max(0, s - 1))}
+className="px-3 py-2 rounded border"
+disabled={slide === 0}
+>Previous</button>
+
+
+<button
+onClick={() => setSlide((s) => Math.min(slides.length - 1, s + 1))}
+className="px-3 py-2 rounded bg-indigo-600 text-white"
+disabled={slide === slides.length - 1}
+>Next</button>
+
+
+<button
+onClick={() => { window.print(); }}
+className="px-3 py-2 rounded border ml-auto"
+title="Print the current page"
+>Print/Save Slide</button>
+</div>
+</section>
+
+
+<aside className="bg-white rounded-lg shadow p-4">
+<h3 className="font-semibold mb-2">Contents</h3>
+<nav className="flex flex-col gap-2 text-sm">
+{slides.map((s, i) => (
+<button
+key={i}
+onClick={() => setSlide(i)}
+className={`text-left p-2 rounded ${i === slide ? 'bg-indigo-50' : 'hover:bg-gray-50'}`}
+>{i + 1}. {s.title}</button>
+))}
+</nav>
+
+
+<div className="mt-4 text-xs text-gray-500">
+<p className="font-semibold">Disclaimer</p>
+<p>This site is educational only and not a diagnostic tool. Do not use it to make medical decisions.</p>
+</div>
+
+
+<div className="mt-4">
+<a href="https://www.cancer.org/" target="_blank" rel="noreferrer" className="text-sm underline">American Cancer Society</a>
+</div>
+</aside>
+</main>
+
+
+<footer className="mt-8 text-center text-xs text-gray-500">
+Built for demo &amp; presentation. Add your institution's content and remove demo analysis before clinical use.
+</footer>
+</div>
+</div>
+);
+}
